@@ -1,6 +1,12 @@
-
+from builddata import *
 import pandas as pd
 
-df = pd.read_csv('Solar data cal poly csv.csv')
 
-print(df.head())
+
+def high_value(energy):
+    ill = 0
+    for x in energy:
+        if x.housing > ill:
+            ill = x.housing
+    print(ill)
+
