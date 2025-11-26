@@ -49,7 +49,7 @@ def seasonal_analysis(data):
     for energy in data:
         for season, months in seasons.items():
             if energy.month in months:
-                seasonal_data[season].append(energy.gold + energy.housing)
+                seasonal_data[season].append(energy.goldtree + energy.housing)
                 break
 
     # The following will calculate the average, total, max, min, and days
@@ -76,7 +76,7 @@ def monthly_analysis(data):
         key = (energy.year, energy.month)
         if key not in monthly_data:
             monthly_data[key] = []
-        monthly_data[key].append(energy.gold + energy.housing)
+        monthly_data[key].append(energy.goldtree + energy.housing)
 #dictionary of each month
     monthly_stats = {}
     monthly_names = ['January', 'February', 'March', 'April', 'May','June',

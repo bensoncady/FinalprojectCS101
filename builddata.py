@@ -14,14 +14,14 @@ class Energy:
         self.year = year
         self.month = month
         self.day = day
-        self.gold = goldtree
+        self.goldtree = goldtree
         self.housing = housing
     def __repr__(self):
         return 'Energy Data({}, {}, {}, {}, {})'.format(
         self.year,
         self.month,
         self.day,
-        self.gold,
+        self.goldtree,
         self.housing)
 
 
@@ -45,4 +45,3 @@ def get_data():
 
     return data
 
-print(get_data())
