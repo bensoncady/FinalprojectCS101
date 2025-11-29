@@ -23,6 +23,8 @@ class Energy:
         self.day,
         self.goldtree,
         self.housing)
+    def __eq__(self, other):
+        return self.year == other.year and self.month == other.month and self.day == other.day and self.goldtree == other.goldtree and self.housing == other.housing and type(self) == type(other)
 
 
 def get_data():
