@@ -1,6 +1,4 @@
-import pandas as pd
 
-df = pd.read_csv('Solar data cal poly csv.csv')
 def str_to_float(s:str):
     try:
         fl = float(s)
@@ -31,17 +29,17 @@ def get_data():
     with open('Solar data cal poly csv.csv') as f:
         data = []
         for line in f:
-            li = line.split(",")
-            date = li[0].split(" ")
-            dale = date[0].split("-")
-            if len(dale) == 3:
-                year1 = int(dale[0])
-                month1 = int(dale[1])
-                day1 = int(dale[2])
-            if len(li) == 5:
-                goldtree1 = str_to_float(li[3])
-                housing1 = str_to_float(li[4])
-            if len(li) == 5 and len(dale) == 3 and not goldtree1 ==0 and not housing1 ==0:
+            linesplit = line.split(",")
+            date = linesplit[0].split(" ")
+            datesplit = date[0].split("-")
+            if len(datesplit) == 3:
+                year1 = int(datesplit[0])
+                month1 = int(datesplit[1])
+                day1 = int(datesplit[2])
+            if len(linesplit) == 5:
+                goldtree1 = str_to_float(linesplit[3])
+                housing1 = str_to_float(linesplit[4])
+            if len(linesplit) == 5 and len(datesplit) == 3 and not goldtree1 ==0 and not housing1 ==0:
                 en = Energy(year1, month1, day1, goldtree1, housing1)
                 data.append(en)
 
