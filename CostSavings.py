@@ -34,7 +34,7 @@ def monthly_savings_breakdown(data, rate_per_kwh=CA_AVG_RATE):
                 'total_kwh': 0,
                 'days': 0
             }
-        monthly_data[key]['total_kwh'] += (energy.gold + energy.housing)
+        monthly_data[key]['total_kwh'] += (energy.goldtree + energy.housing)
         monthly_data[key]['days'] += 1
 
     # Calculate savings for each month
@@ -56,7 +56,7 @@ def monthly_savings_breakdown(data, rate_per_kwh=CA_AVG_RATE):
 
 
 def yearly_savings_projection(data, rate_per_kwh=CA_AVG_RATE):
-    total_kwh = sum(energy.gold + energy.housing for energy in data)
+    total_kwh = sum(energy.goldtree + energy.housing for energy in data)
     days_analyzed = len(data)
 
     # Calculate daily average
@@ -85,7 +85,7 @@ def yearly_savings_projection(data, rate_per_kwh=CA_AVG_RATE):
 
 def pge_comparison(data, solar_rate=CA_AVG_RATE, pge_rate=PGE_SLO_RATE):
 
-    total_kwh = sum(energy.gold + energy.housing for energy in data)
+    total_kwh = sum(energy.goldtree + energy.housing for energy in data)
     days_analyzed = len(data)
 
     # What Cal Poly saved with solar
