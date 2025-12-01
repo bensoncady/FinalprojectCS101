@@ -2,8 +2,7 @@ from builddata import *
 import unittest
 import main
 import Analysis
-
-
+from CostSavings import total_cost_savings
 class TestCases(unittest.TestCase):
 
     def test_production_analysis(self):
@@ -18,6 +17,7 @@ class TestCases(unittest.TestCase):
         result = Analysis.seasonal_analysis(input)
         self.assertEqual(expected, result)
 
+class TestCostSavings(unittest.TestCase):
     def test_monthly_analysis(self):
         input = get_data()
         expected = {'2024-July': {'total_production': 1088755.875, 'avg_daily_production': 35121.157258064515, 'days_recorded': 31, 'max_day': 39114.875, 'min_day': 26000.625}}
@@ -25,7 +25,23 @@ class TestCases(unittest.TestCase):
         self.assertEqual(expected, result)
 
 
+    #Tests total savings is calculated correctly with default rate
 
+    def setUp(self):  # ← Must be named EXACTLY "setUp" with capital U
+        """Create sample data for testing"""
+        self.sample_data = [
+            Energy(2024, 7, 1, 35000.0, 3000.0),
+            Energy(2024, 7, 2, 36000.0, 3100.0),
+            Energy(2024, 7, 3, 35500.0, 3050.0),
+            Energy(2024, 7, 4, 37000.0, 2900.0),
+            Energy(2024, 7, 5, 38000.0, 3000.0),
+        ]
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_total_kwh_calculation(self):
+
+        result = total_cost_savings(self.sample_data)
+
+        # 38000 + 39100 + 38550 + 39900 + 41000 = 196,550
+        expected_kwh = 196550.0
+        self.assertAlmostEqual(result['total_kwh_produced'], expected_kwh, places=2)
+
