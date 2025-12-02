@@ -3,6 +3,7 @@ import unittest
 import main
 import Analysis
 from CostSavings import total_cost_savings
+from CostSavings import yearly_savings_projection, monthly_savings_breakdown, pge_comparison
 class TestCases(unittest.TestCase):
 
     def test_production_analysis(self):
@@ -27,8 +28,7 @@ class TestCostSavings(unittest.TestCase):
 
     #Tests total savings is calculated correctly with default rate
 
-    def setUp(self):  # ← Must be named EXACTLY "setUp" with capital U
-        """Create sample data for testing"""
+    def setUp(self):   #SAMPLE DATA TO TEST
         self.sample_data = [
             Energy(2024, 7, 1, 35000.0, 3000.0),
             Energy(2024, 7, 2, 36000.0, 3100.0),
@@ -45,3 +45,18 @@ class TestCostSavings(unittest.TestCase):
         expected_kwh = 196550.0
         self.assertAlmostEqual(result['total_kwh_produced'], expected_kwh, places=2)
 
+
+class TestCostSavings(unittest.TestCase):
+    """All tests use real Cal Poly data"""
+
+    def setUp(self):
+        """Load real data before each test"""
+        self.data = get_data()
+
+    def test_total_savings(self):
+        result = total_cost_savings(self.data, rate_per_kwh=0.30)
+        self.assertGreater(result['total_savings'], 4_000_000)
+
+    def test_yearly_projection(self):
+        result = yearly_savings_projection(self.data, rate_per_kwh=0.30)
+        self.assertGreater(result['projected_annual_savings'], 3_000_000)
