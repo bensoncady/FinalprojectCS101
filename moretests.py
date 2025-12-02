@@ -274,12 +274,12 @@ class TestCostSavingsRealData(unittest.TestCase):
         self.assertAlmostEqual(monthly_total,
                                result['total_savings']['total_savings'], places=2)
 
-        print(f"✓ Comprehensive Analysis Complete")
+        print(f"✓ Cost Savings Analysis Completed!")
         print(f"  - Total Savings: ${result['total_savings']['total_savings']:,.2f}")
         print(f"  - Months Analyzed: {len(result['monthly_breakdown'])}")
         print(f"  - Annual Projection: ${result['yearly_projection']['projected_annual_savings']:,.2f}")
         print(f"  - PG&E Savings: ${result['pge_comparison']['savings_vs_pge']:,.2f}")
-        print(f"✓ All components verified and consistent")
+
 
 
 if __name__ == '__main__':
